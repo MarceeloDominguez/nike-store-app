@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import {
   View,
   Text,
@@ -8,13 +8,27 @@ import {
   StyleSheet,
   TouchableOpacity,
   StatusBar,
+  Animated,
 } from "react-native";
 import { onboarding } from "../constants/onboarding";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { RootStackParamsList } from "../navigation/Navigation";
+
+type OnboardingScreenProp = NativeStackNavigationProp<
+  RootStackParamsList,
+  "OnboardingScreen"
+>;
+
+type Prop = {
+  navigation: OnboardingScreenProp;
+};
 
 const { width, height } = Dimensions.get("screen");
 
-export default function OnboardingScreen() {
-  const [index, setIndex] = useState(0);
+export default function OnboardingScreen({ navigation }: Prop) {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const scrollX = useRef(new Animated.Value(0)).current;
+  const ref = useRef<FlatList | null>(null);
 
   return (
     <View style={styles.container}>
@@ -29,12 +43,19 @@ export default function OnboardingScreen() {
         horizontal
         showsHorizontalScrollIndicator={false}
         pagingEnabled
+        snapToInterval={width}
         contentContainerStyle={{
           alignItems: "center",
         }}
+        ref={ref}
+        //para sacar el index
         onMomentumScrollEnd={(e) => {
-          setIndex(Math.round(e.nativeEvent.contentOffset.x / width));
+          setCurrentIndex(Math.round(e.nativeEvent.contentOffset.x / width));
         }}
+        onScroll={Animated.event(
+          [{ nativeEvent: { contentOffset: { x: scrollX } } }],
+          { useNativeDriver: false }
+        )}
         renderItem={({ item }) => {
           return (
             <>
@@ -72,8 +93,8 @@ export default function OnboardingScreen() {
                     style={[
                       styles.ellipse,
                       {
-                        bottom: index === 0 ? 5 : -4,
-                        width: index === 0 ? 195 : 290,
+                        bottom: currentIndex === 0 ? 5 : -4,
+                        width: currentIndex === 0 ? 195 : 290,
                       },
                     ]}
                   />
@@ -83,7 +104,8 @@ export default function OnboardingScreen() {
                       style={[
                         styles.image,
                         {
-                          height: index === 0 ? height * 0.4 : height * 0.36,
+                          height:
+                            currentIndex === 0 ? height * 0.4 : height * 0.36,
                         },
                       ]}
                     />
@@ -98,8 +120,57 @@ export default function OnboardingScreen() {
           );
         }}
       />
-      <TouchableOpacity style={styles.containerButton}>
-        <Text style={styles.titleButton}>Next</Text>
+      {/* puntos indicadores  */}
+      <View style={styles.paginationSlide}>
+        {onboarding.map((_, index) => {
+          return (
+            <View
+              key={index}
+              style={[
+                styles.dot,
+                currentIndex == index && {
+                  width: 50,
+                },
+              ]}
+            />
+          );
+        })}
+        <Animated.View
+          style={[
+            styles.dotIndicator,
+            {
+              transform: [
+                {
+                  translateX: Animated.divide(scrollX, width).interpolate({
+                    inputRange: [0, 1],
+                    outputRange: [0, 34], //4px mas por el gap
+                  }),
+                },
+              ],
+            },
+          ]}
+        />
+      </View>
+      {/* boton next */}
+      <TouchableOpacity
+        activeOpacity={0.8}
+        style={styles.containerButton}
+        onPress={() => {
+          ref?.current?.scrollToOffset({
+            offset: (currentIndex + 1) * width,
+            animated: true,
+          });
+          setCurrentIndex(currentIndex + 1);
+          currentIndex === onboarding.length - 1 &&
+            navigation.navigate("HomeScreen");
+
+          currentIndex === onboarding.length - 1 &&
+            setCurrentIndex(onboarding.length - 1);
+        }}
+      >
+        <Text style={styles.titleButton}>
+          {currentIndex === onboarding.length - 1 ? "Go Home" : "Next"}
+        </Text>
       </TouchableOpacity>
     </View>
   );
@@ -212,5 +283,26 @@ const styles = StyleSheet.create({
     width: 80,
     height: 80,
     left: 50,
+  },
+  //styles dot
+  paginationSlide: {
+    position: "absolute",
+    bottom: 100,
+    flexDirection: "row",
+    alignSelf: "center",
+    gap: 4,
+  },
+  dot: {
+    width: 30,
+    height: 5,
+    backgroundColor: "#FFB21A",
+    borderRadius: 2.5,
+  },
+  dotIndicator: {
+    width: 50,
+    height: 5,
+    position: "absolute",
+    backgroundColor: "#fff",
+    borderRadius: 2.5,
   },
 });
