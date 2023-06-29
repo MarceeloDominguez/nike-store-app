@@ -162,7 +162,7 @@ export default function OnboardingScreen({ navigation }: Prop) {
           });
           setCurrentIndex(currentIndex + 1);
           currentIndex === onboarding.length - 1 &&
-            navigation.navigate("HomeScreen");
+            navigation.navigate("TabNavigation");
 
           currentIndex === onboarding.length - 1 &&
             setCurrentIndex(onboarding.length - 1);

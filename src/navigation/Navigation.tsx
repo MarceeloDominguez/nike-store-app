@@ -1,15 +1,26 @@
 import React from "react";
+import { ImageBackground, View, StyleSheet } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import OnboardingScreen from "../screens/OnboardingScreen";
 import HomeScreen from "../screens/HomeScreen";
+import FavoriteScreen from "../screens/FavoriteScreen";
+import NotificationsScreen from "../screens/NotificationsScreen";
+import AccountScreen from "../screens/AccountScreen";
+import { Feather } from "@expo/vector-icons";
+import { Ionicons } from "@expo/vector-icons";
 
 export type RootStackParamsList = {
   OnboardingScreen: undefined;
-  HomeScreen: undefined;
+  TabNavigation: undefined;
+  FavoriteScreen: undefined;
+  NotificationsScreen: undefined;
+  AccountScreen: undefined;
 };
 
 const Stack = createNativeStackNavigator<RootStackParamsList>();
+const Tab = createBottomTabNavigator();
 
 export default function Navigation() {
   return (
@@ -21,11 +32,137 @@ export default function Navigation() {
           options={{ headerShown: false }}
         />
         <Stack.Screen
-          name="HomeScreen"
-          component={HomeScreen}
+          name="TabNavigation"
+          component={TabNavigation}
           options={{ headerShown: false }}
         />
       </Stack.Navigator>
     </NavigationContainer>
   );
 }
+
+const TabBackground = ({ children }: { children: JSX.Element }) => {
+  return (
+    <ImageBackground
+      source={require("../../assets/tab-image.png")}
+      style={{ flex: 1 }}
+    >
+      {children}
+    </ImageBackground>
+  );
+};
+
+const TabNavigation = () => {
+  return (
+    <Tab.Navigator
+      screenOptions={{
+        headerShown: false,
+        tabBarItemStyle: styles.tabBarItem,
+        tabBarStyle: styles.tabBar,
+        tabBarShowLabel: false,
+        tabBarBackground() {
+          return (
+            <TabBackground>
+              <View style={styles.containerButtonFloating}>
+                <View style={styles.buttonFloating}>
+                  <Feather name="shopping-bag" size={24} color="#fff" />
+                </View>
+              </View>
+            </TabBackground>
+          );
+        },
+      }}
+    >
+      <Tab.Screen
+        name="HomeScreen"
+        component={HomeScreen}
+        options={{
+          tabBarIcon: ({ focused }) => (
+            <View style={{ top: -15, right: 12 }}>
+              <Feather
+                name="home"
+                size={24}
+                color={focused ? "#0D6EFD" : "#6A6A6A"}
+              />
+            </View>
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="FavoriteScreen"
+        component={FavoriteScreen}
+        options={{
+          tabBarIcon: ({ focused }) => (
+            <View style={{ top: -15, right: 35 }}>
+              <Feather
+                name="heart"
+                size={24}
+                color={focused ? "#0D6EFD" : "#6A6A6A"}
+              />
+            </View>
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="NotificationsScreen"
+        component={NotificationsScreen}
+        options={{
+          tabBarIcon: ({ focused }) => (
+            <View style={{ top: -15, left: 35 }}>
+              <Ionicons
+                name="ios-notifications-outline"
+                size={24}
+                color={focused ? "#0D6EFD" : "#6A6A6A"}
+              />
+            </View>
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="AccountScreen"
+        component={AccountScreen}
+        options={{
+          tabBarIcon: ({ focused }) => (
+            <View style={{ top: -15, left: 12 }}>
+              <Ionicons
+                name="person-outline"
+                size={24}
+                color={focused ? "#0D6EFD" : "#6A6A6A"}
+              />
+            </View>
+          ),
+        }}
+      />
+    </Tab.Navigator>
+  );
+};
+
+const styles = StyleSheet.create({
+  containerButtonFloating: {
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  buttonFloating: {
+    backgroundColor: "#0D6EFD",
+    width: 60,
+    height: 60,
+    borderRadius: 30,
+    justifyContent: "center",
+    alignItems: "center",
+    elevation: 10,
+  },
+  tabBarItem: {
+    height: 30,
+    right: 0,
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+    top: 60,
+  },
+  tabBar: {
+    height: 120,
+    position: "absolute",
+    borderTopWidth: 0,
+    elevation: 0,
+  },
+});
