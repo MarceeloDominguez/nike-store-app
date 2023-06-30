@@ -8,7 +8,7 @@ import HomeScreen from "../screens/HomeScreen";
 import FavoriteScreen from "../screens/FavoriteScreen";
 import NotificationsScreen from "../screens/NotificationsScreen";
 import AccountScreen from "../screens/AccountScreen";
-import { Feather } from "@expo/vector-icons";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons";
 
 export type RootStackParamsList = {
@@ -60,12 +60,17 @@ const TabNavigation = () => {
         tabBarItemStyle: styles.tabBarItem,
         tabBarStyle: styles.tabBar,
         tabBarShowLabel: false,
+        tabBarHideOnKeyboard: true,
         tabBarBackground() {
           return (
             <TabBackground>
               <View style={styles.containerButtonFloating}>
                 <View style={styles.buttonFloating}>
-                  <Feather name="shopping-bag" size={24} color="#fff" />
+                  <MaterialCommunityIcons
+                    name="shopping-outline"
+                    size={24}
+                    color="#fff"
+                  />
                 </View>
               </View>
             </TabBackground>
@@ -79,8 +84,8 @@ const TabNavigation = () => {
         options={{
           tabBarIcon: ({ focused }) => (
             <View style={{ top: -15, right: 12 }}>
-              <Feather
-                name="home"
+              <Ionicons
+                name="md-home-outline"
                 size={24}
                 color={focused ? "#0D6EFD" : "#6A6A6A"}
               />
@@ -94,8 +99,8 @@ const TabNavigation = () => {
         options={{
           tabBarIcon: ({ focused }) => (
             <View style={{ top: -15, right: 35 }}>
-              <Feather
-                name="heart"
+              <Ionicons
+                name="heart-outline"
                 size={24}
                 color={focused ? "#0D6EFD" : "#6A6A6A"}
               />
