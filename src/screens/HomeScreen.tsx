@@ -13,6 +13,7 @@ import AllShoes from "../components/AllShoes";
 import OutdoorShoes from "../components/OutdoorShoes";
 import TennisShoes from "../components/TennisShoes";
 import TitleSection from "../components/TitleSection";
+import BannerHome from "../components/BannerHome";
 
 const category = ["All Shoes", "Outdoor", "Tennis"];
 
@@ -56,6 +57,7 @@ export default function HomeScreen() {
         {selectedCategory === 1 && <OutdoorShoes />}
         {selectedCategory === 2 && <TennisShoes />}
         <TitleSection title="New Arrivals" textNavigate="See all" />
+        <BannerHome />
       </View>
     </ScrollView>
   );
