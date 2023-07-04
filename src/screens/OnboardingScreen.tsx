@@ -13,6 +13,7 @@ import {
 import { onboarding } from "../constants/onboarding";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { RootStackParamsList } from "../navigation/Navigation";
+import { Color } from "../constants/theme";
 
 type OnboardingScreenProp = NativeStackNavigationProp<
   RootStackParamsList,
@@ -32,7 +33,7 @@ export default function OnboardingScreen({ navigation }: Prop) {
 
   return (
     <View style={styles.container}>
-      <StatusBar backgroundColor="#1483C2" />
+      <StatusBar backgroundColor={Color.screenOnboarding} />
       <Image
         source={require("../../assets/onboarding/logo-nike.png")}
         style={styles.logoNike}
@@ -179,7 +180,7 @@ export default function OnboardingScreen({ navigation }: Prop) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#1483C2",
+    backgroundColor: Color.screenOnboarding,
   },
   contentImageTitle: {
     alignItems: "center",
@@ -260,7 +261,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   title: {
-    fontSize: 34,
+    fontSize: width <= 360 ? 20 : 34,
     fontWeight: "bold",
     color: "#fff",
     textTransform: "capitalize",
@@ -269,7 +270,7 @@ const styles = StyleSheet.create({
     width: width * 0.7,
   },
   subtitle: {
-    fontSize: 19,
+    fontSize: width <= 360 ? 14 : 19,
     fontWeight: "500",
     color: "#fff",
     textTransform: "capitalize",

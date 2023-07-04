@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, StyleSheet, Image } from "react-native";
+import { View, StyleSheet, Image } from "react-native";
 
 export default function BannerHome() {
   return (
@@ -36,22 +36,22 @@ const styles = StyleSheet.create({
     borderRadius: 16,
   },
   imageOferta: {
-    width: 140,
-    height: 80,
+    width: 110,
+    height: 70,
     resizeMode: "contain",
   },
   imageNikeBanner: {
     width: 120,
     height: 100,
     resizeMode: "contain",
-    transform: [{ translateY: -16 }, { translateX: -20 }],
+    transform: [{ translateY: -16 }],
   },
   vectorBanner: {
-    width: 30,
-    height: 30,
+    width: 25,
+    height: 25,
     resizeMode: "contain",
     position: "absolute",
-    right: 140,
+    right: 120,
     top: 20,
   },
   vectorBannerDos: {
@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
     height: 20,
     resizeMode: "contain",
     position: "absolute",
-    bottom: 17,
+    bottom: 22,
     left: 4,
   },
 });

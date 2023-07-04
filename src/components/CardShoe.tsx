@@ -9,6 +9,7 @@ import {
 } from "react-native";
 import { Shoe } from "../interface/interfaceShoe";
 import { Ionicons } from "@expo/vector-icons";
+import { Color } from "../constants/theme";
 
 const { width } = Dimensions.get("window");
 
@@ -37,7 +38,7 @@ export default function CardShoe({ shoe }: Prop) {
         style={styles.iconHeart}
         name="heart-outline"
         size={24}
-        color="#000"
+        color={Color.textSecondary}
       />
     </View>
   );
@@ -60,7 +61,7 @@ const styles = StyleSheet.create({
   bestSeller: {
     textTransform: "uppercase",
     fontSize: 13,
-    color: "#0D6EFD",
+    color: Color.primary,
     paddingHorizontal: 10,
     marginBottom: 5,
     fontWeight: "bold",
@@ -68,7 +69,7 @@ const styles = StyleSheet.create({
   },
   nameShoe: {
     fontSize: 18,
-    color: "#6A6A6A",
+    color: Color.textPrimary,
     paddingHorizontal: 10,
     marginBottom: 2,
     letterSpacing: 0.4,
@@ -76,7 +77,7 @@ const styles = StyleSheet.create({
   price: {
     paddingHorizontal: 10,
     marginVertical: 5,
-    color: "#2B2B2B",
+    color: Color.textSecondary,
     fontWeight: "bold",
     fontSize: 15,
   },
@@ -88,7 +89,7 @@ const styles = StyleSheet.create({
   containerBtnFooterCardShoe: {
     height: 45,
     width: 45,
-    backgroundColor: "#0D6EFD",
+    backgroundColor: Color.primary,
     justifyContent: "center",
     alignItems: "center",
     borderTopLeftRadius: 16,

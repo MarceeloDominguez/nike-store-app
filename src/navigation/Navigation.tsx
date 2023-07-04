@@ -10,6 +10,7 @@ import NotificationsScreen from "../screens/NotificationsScreen";
 import AccountScreen from "../screens/AccountScreen";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons";
+import { Color } from "../constants/theme";
 
 export type RootStackParamsList = {
   OnboardingScreen: undefined;
@@ -25,7 +26,7 @@ const Tab = createBottomTabNavigator();
 export default function Navigation() {
   return (
     <NavigationContainer>
-      <Stack.Navigator>
+      <Stack.Navigator screenOptions={{ animation: "fade" }}>
         <Stack.Screen
           name="OnboardingScreen"
           component={OnboardingScreen}
@@ -87,7 +88,7 @@ const TabNavigation = () => {
               <Ionicons
                 name="md-home-outline"
                 size={24}
-                color={focused ? "#0D6EFD" : "#6A6A6A"}
+                color={focused ? Color.primary : "#6A6A6A"}
               />
             </View>
           ),
@@ -102,7 +103,7 @@ const TabNavigation = () => {
               <Ionicons
                 name="heart-outline"
                 size={24}
-                color={focused ? "#0D6EFD" : "#6A6A6A"}
+                color={focused ? Color.primary : "#6A6A6A"}
               />
             </View>
           ),
@@ -117,7 +118,7 @@ const TabNavigation = () => {
               <Ionicons
                 name="ios-notifications-outline"
                 size={24}
-                color={focused ? "#0D6EFD" : "#6A6A6A"}
+                color={focused ? Color.primary : "#6A6A6A"}
               />
             </View>
           ),
@@ -132,7 +133,7 @@ const TabNavigation = () => {
               <Ionicons
                 name="person-outline"
                 size={24}
-                color={focused ? "#0D6EFD" : "#6A6A6A"}
+                color={focused ? Color.primary : "#6A6A6A"}
               />
             </View>
           ),
@@ -148,7 +149,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   buttonFloating: {
-    backgroundColor: "#0D6EFD",
+    backgroundColor: Color.primary,
     width: 60,
     height: 60,
     borderRadius: 30,

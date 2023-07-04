@@ -1,5 +1,6 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
+import { Color } from "../constants/theme";
 
 type Prop = {
   title: string;
@@ -23,14 +24,14 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   title: {
-    color: "#2B2B2B",
+    color: Color.textSecondary,
     fontWeight: "600",
     fontSize: 16,
     letterSpacing: 0.5,
   },
   textNavigate: {
     fontSize: 13,
-    color: "#0D6EFD",
+    color: Color.primary,
     fontWeight: "bold",
     letterSpacing: 0.4,
   },

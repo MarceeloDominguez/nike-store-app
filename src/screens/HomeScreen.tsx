@@ -14,6 +14,7 @@ import OutdoorShoes from "../components/OutdoorShoes";
 import TennisShoes from "../components/TennisShoes";
 import TitleSection from "../components/TitleSection";
 import BannerHome from "../components/BannerHome";
+import { Color } from "../constants/theme";
 
 const category = ["All Shoes", "Outdoor", "Tennis"];
 
@@ -36,7 +37,7 @@ export default function HomeScreen() {
                 styles.wrapCategory,
                 {
                   backgroundColor:
-                    selectedCategory === index ? "#0D6EFD" : "#fff",
+                    selectedCategory === index ? Color.primary : "#fff",
                 },
               ]}
               onPress={() => setSelectedCategory(index)}
@@ -44,7 +45,10 @@ export default function HomeScreen() {
               <Text
                 style={[
                   styles.textCategory,
-                  { color: selectedCategory === index ? "#fff" : "#6A6A6A" },
+                  {
+                    color:
+                      selectedCategory === index ? "#fff" : Color.textPrimary,
+                  },
                 ]}
               >
                 {item}
@@ -65,13 +69,13 @@ export default function HomeScreen() {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "#F7F7F9",
+    backgroundColor: Color.screen,
     flex: 1,
     paddingHorizontal: 22,
   },
   titleCategory: {
-    color: "#2B2B2B",
-    fontWeight: "600",
+    color: Color.textSecondary,
+    fontWeight: "bold",
     fontSize: 16,
     letterSpacing: 0.5,
   },

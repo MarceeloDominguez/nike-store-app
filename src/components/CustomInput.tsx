@@ -1,6 +1,7 @@
 import React from "react";
 import { View, TextInput, StyleSheet } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
+import { Color } from "../constants/theme";
 
 export default function CustomInput() {
   return (
@@ -27,7 +28,7 @@ export default function CustomInput() {
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: 20,
+    marginTop: 10,
     flexDirection: "row",
     gap: 14,
   },
@@ -45,7 +46,7 @@ const styles = StyleSheet.create({
   contentIconShare: {
     width: 50,
     height: 50,
-    backgroundColor: "#0D6EFD",
+    backgroundColor: Color.primary,
     borderRadius: 25,
     justifyContent: "center",
     alignItems: "center",
