@@ -1,6 +1,7 @@
 import React from "react";
 import { View, StyleSheet, Image } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { Color } from "../constants/theme";
 
 export default function HeaderHome() {
   return (
@@ -23,7 +24,7 @@ export default function HeaderHome() {
         <MaterialCommunityIcons
           name="shopping-outline"
           size={24}
-          color="#000"
+          color={Color.textSecondary}
         />
       </View>
     </View>

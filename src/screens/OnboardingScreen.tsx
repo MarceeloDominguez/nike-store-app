@@ -234,7 +234,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   titleButton: {
-    fontWeight: "600",
+    fontWeight: "bold",
     color: "#2B2B2B",
     fontSize: 14,
   },

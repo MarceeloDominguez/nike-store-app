@@ -10,6 +10,9 @@ import {
 import { Shoe } from "../interface/interfaceShoe";
 import { Ionicons } from "@expo/vector-icons";
 import { Color } from "../constants/theme";
+import { useNavigation } from "@react-navigation/native";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { RootStackParamsList } from "../navigation/Navigation";
 
 const { width } = Dimensions.get("window");
 
@@ -19,6 +22,8 @@ type Prop = {
 
 export default function CardShoe({ shoe }: Prop) {
   const { image, title, price } = shoe;
+  const navigation =
+    useNavigation<NativeStackNavigationProp<RootStackParamsList>>();
 
   return (
     <View style={styles.card}>
@@ -30,6 +35,7 @@ export default function CardShoe({ shoe }: Prop) {
         <TouchableOpacity
           activeOpacity={0.8}
           style={styles.containerBtnFooterCardShoe}
+          onPress={() => navigation.navigate("DetailsScreen", shoe)}
         >
           <Text style={styles.iconMore}>+</Text>
         </TouchableOpacity>

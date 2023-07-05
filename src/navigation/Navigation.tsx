@@ -11,13 +11,17 @@ import AccountScreen from "../screens/AccountScreen";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons";
 import { Color } from "../constants/theme";
+import DetailsScreen from "../screens/DetailsScreen";
+import { Shoe } from "../interface/interfaceShoe";
 
 export type RootStackParamsList = {
   OnboardingScreen: undefined;
   TabNavigation: undefined;
+  HomeScreen: undefined;
   FavoriteScreen: undefined;
   NotificationsScreen: undefined;
   AccountScreen: undefined;
+  DetailsScreen: Shoe;
 };
 
 const Stack = createNativeStackNavigator<RootStackParamsList>();
@@ -30,6 +34,11 @@ export default function Navigation() {
         <Stack.Screen
           name="OnboardingScreen"
           component={OnboardingScreen}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="DetailsScreen"
+          component={DetailsScreen}
           options={{ headerShown: false }}
         />
         <Stack.Screen
