@@ -7,12 +7,14 @@ import HeaderDetails from "../components/HeaderDetails";
 import ImagesDetailsScreen from "../components/ImagesDetailsScreen";
 import { Ionicons } from "@expo/vector-icons";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { useShoeStore } from "../store/shoeStore";
 
 interface Prop
   extends NativeStackScreenProps<RootStackParamsList, "DetailsScreen"> {}
 
 export default function DetailsScreen({ route }: Prop) {
   const shoe = route.params;
+  const { addShoeToCart } = useShoeStore();
 
   return (
     <>
@@ -39,7 +41,10 @@ export default function DetailsScreen({ route }: Prop) {
             />
           </View>
         </View>
-        <Pressable style={styles.containerButton}>
+        <Pressable
+          style={styles.containerButton}
+          onPress={() => addShoeToCart(shoe)}
+        >
           <View style={styles.wrapTextButton}>
             <MaterialCommunityIcons
               name="shopping-outline"

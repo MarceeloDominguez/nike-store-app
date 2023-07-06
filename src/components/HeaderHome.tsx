@@ -5,6 +5,7 @@ import { Color } from "../constants/theme";
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack/lib/typescript/src/types";
 import { RootStackParamsList } from "../navigation/Navigation";
+import DotRed from "./DotRed";
 
 export default function HeaderHome() {
   const navigation =
@@ -36,6 +37,7 @@ export default function HeaderHome() {
           size={24}
           color={Color.textSecondary}
         />
+        <DotRed />
       </TouchableOpacity>
     </View>
   );
@@ -73,4 +75,13 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
+  // dotRedInIconShopping: {
+  //   width: 8,
+  //   height: 8,
+  //   backgroundColor: "#FF1900",
+  //   position: "absolute",
+  //   borderRadius: 4,
+  //   top: 3,
+  //   right: 5,
+  // },
 });

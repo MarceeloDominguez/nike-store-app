@@ -12,4 +12,5 @@ export interface Shoe {
   id: number;
   description: string;
   category: string;
+  quantity: number;
 }

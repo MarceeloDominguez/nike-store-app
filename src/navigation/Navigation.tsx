@@ -45,7 +45,7 @@ export default function Navigation() {
         <Stack.Screen
           name="CartScreen"
           component={CartScreen}
-          options={{ headerShown: false }}
+          //options={{ headerShown: false }}
         />
         <Stack.Screen
           name="TabNavigation"

@@ -6,6 +6,7 @@ import { Color } from "../constants/theme";
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { RootStackParamsList } from "../navigation/Navigation";
+import DotRed from "./DotRed";
 
 export default function HeaderDetails() {
   const navigation =
@@ -13,15 +14,18 @@ export default function HeaderDetails() {
 
   return (
     <View style={styles.container}>
-      <View style={styles.contentIcon}>
+      <TouchableOpacity
+        style={styles.contentIcon}
+        onPress={() => navigation.goBack()}
+        activeOpacity={0.8}
+      >
         <MaterialIcons
           name="arrow-back-ios"
           size={20}
           color={Color.textSecondary}
           style={{ left: 3 }}
-          onPress={() => navigation.goBack()}
         />
-      </View>
+      </TouchableOpacity>
       <Text style={styles.title}>Sneaker Shop</Text>
       <TouchableOpacity
         style={styles.contentIcon}
@@ -33,6 +37,7 @@ export default function HeaderDetails() {
           size={24}
           color={Color.textSecondary}
         />
+        <DotRed />
       </TouchableOpacity>
     </View>
   );
