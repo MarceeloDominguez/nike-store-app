@@ -11,4 +11,5 @@ export interface Shoe {
   images: Images[];
   id: number;
   description: string;
+  category: string;
 }

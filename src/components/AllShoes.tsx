@@ -4,9 +4,11 @@ import CardShoe from "./CardShoe";
 import { shoes } from "../data/shoes";
 
 export default function AllShoes() {
+  const shoesFiltered = shoes.filter((item) => item.category === "All Shoes");
+
   return (
     <View style={styles.containerCard}>
-      {shoes.map((item) => (
+      {shoesFiltered.map((item) => (
         <CardShoe key={item.id} shoe={item} />
       ))}
     </View>

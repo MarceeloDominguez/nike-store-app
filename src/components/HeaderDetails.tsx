@@ -1,12 +1,15 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { MaterialIcons } from "@expo/vector-icons";
 import { Color } from "../constants/theme";
 import { useNavigation } from "@react-navigation/native";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { RootStackParamsList } from "../navigation/Navigation";
 
 export default function HeaderDetails() {
-  const navigation = useNavigation();
+  const navigation =
+    useNavigation<NativeStackNavigationProp<RootStackParamsList>>();
 
   return (
     <View style={styles.container}>
@@ -20,13 +23,17 @@ export default function HeaderDetails() {
         />
       </View>
       <Text style={styles.title}>Sneaker Shop</Text>
-      <View style={styles.contentIcon}>
+      <TouchableOpacity
+        style={styles.contentIcon}
+        activeOpacity={0.8}
+        onPress={() => navigation.navigate("CartScreen")}
+      >
         <MaterialCommunityIcons
           name="shopping-outline"
           size={24}
           color={Color.textSecondary}
         />
-      </View>
+      </TouchableOpacity>
     </View>
   );
 }

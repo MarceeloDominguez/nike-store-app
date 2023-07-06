@@ -15,55 +15,59 @@ import TennisShoes from "../components/TennisShoes";
 import TitleSection from "../components/TitleSection";
 import BannerHome from "../components/BannerHome";
 import { Color } from "../constants/theme";
+import ButtonFloating from "../components/ButtonFloating";
 
 const category = ["All Shoes", "Outdoor", "Tennis"];
 
 export default function HomeScreen() {
-  const [selectedCategory, setSelectedCategory] = useState(0);
+  const [selectedCategory, setSelectedCategory] = useState("All Shoes");
 
   return (
-    <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
-      <StatusBar backgroundColor="#F7F7F9" barStyle="dark-content" />
-      <HeaderHome />
-      <CustomInput />
-      <View style={{ marginTop: 25 }}>
-        <Text style={styles.titleCategory}>Select Category</Text>
-        <View style={styles.containerCategories}>
-          {category.map((item, index) => (
-            <TouchableOpacity
-              activeOpacity={0.8}
-              key={index}
-              style={[
-                styles.wrapCategory,
-                {
-                  backgroundColor:
-                    selectedCategory === index ? Color.primary : "#fff",
-                },
-              ]}
-              onPress={() => setSelectedCategory(index)}
-            >
-              <Text
+    <>
+      <ButtonFloating />
+      <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
+        <StatusBar backgroundColor="#F7F7F9" barStyle="dark-content" />
+        <HeaderHome />
+        <CustomInput />
+        <View style={{ marginTop: 25 }}>
+          <Text style={styles.titleCategory}>Select Category</Text>
+          <View style={styles.containerCategories}>
+            {category.map((item, index) => (
+              <TouchableOpacity
+                activeOpacity={0.8}
+                key={index}
                 style={[
-                  styles.textCategory,
+                  styles.wrapCategory,
                   {
-                    color:
-                      selectedCategory === index ? "#fff" : Color.textPrimary,
+                    backgroundColor:
+                      selectedCategory === item ? Color.primary : "#fff",
                   },
                 ]}
+                onPress={() => setSelectedCategory(item)}
               >
-                {item}
-              </Text>
-            </TouchableOpacity>
-          ))}
+                <Text
+                  style={[
+                    styles.textCategory,
+                    {
+                      color:
+                        selectedCategory === item ? "#fff" : Color.textPrimary,
+                    },
+                  ]}
+                >
+                  {item}
+                </Text>
+              </TouchableOpacity>
+            ))}
+          </View>
+          <TitleSection title="Popular Shoes" textNavigate="See all" />
+          {selectedCategory === "All Shoes" && <AllShoes />}
+          {selectedCategory === "Outdoor" && <OutdoorShoes />}
+          {selectedCategory === "Tennis" && <TennisShoes />}
+          <TitleSection title="New Arrivals" textNavigate="See all" />
+          <BannerHome />
         </View>
-        <TitleSection title="Popular Shoes" textNavigate="See all" />
-        {selectedCategory === 0 && <AllShoes />}
-        {selectedCategory === 1 && <OutdoorShoes />}
-        {selectedCategory === 2 && <TennisShoes />}
-        <TitleSection title="New Arrivals" textNavigate="See all" />
-        <BannerHome />
-      </View>
-    </ScrollView>
+      </ScrollView>
+    </>
   );
 }
 

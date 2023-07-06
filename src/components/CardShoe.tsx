@@ -29,7 +29,11 @@ export default function CardShoe({ shoe }: Prop) {
     <View style={styles.card}>
       <Image style={styles.image} source={image} />
       <Text style={styles.bestSeller}>best seller</Text>
-      <Text style={styles.nameShoe}>{title}</Text>
+      <View style={styles.wrapNameShoe}>
+        <Text style={styles.nameShoe} numberOfLines={1}>
+          {title}
+        </Text>
+      </View>
       <View style={styles.footerCardShoe}>
         <Text style={styles.price}>$ {price}</Text>
         <TouchableOpacity
@@ -73,11 +77,14 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     letterSpacing: 0.4,
   },
+  wrapNameShoe: {
+    maxWidth: width * 0.48 - 22,
+  },
   nameShoe: {
-    fontSize: 18,
+    fontSize: 16,
     color: Color.textPrimary,
     paddingHorizontal: 10,
-    marginBottom: 2,
+    marginBottom: 5,
     letterSpacing: 0.4,
   },
   price: {

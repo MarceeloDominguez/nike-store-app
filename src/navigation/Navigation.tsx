@@ -8,11 +8,11 @@ import HomeScreen from "../screens/HomeScreen";
 import FavoriteScreen from "../screens/FavoriteScreen";
 import NotificationsScreen from "../screens/NotificationsScreen";
 import AccountScreen from "../screens/AccountScreen";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons";
 import { Color } from "../constants/theme";
 import DetailsScreen from "../screens/DetailsScreen";
 import { Shoe } from "../interface/interfaceShoe";
+import CartScreen from "../screens/CartScreen";
 
 export type RootStackParamsList = {
   OnboardingScreen: undefined;
@@ -22,6 +22,7 @@ export type RootStackParamsList = {
   NotificationsScreen: undefined;
   AccountScreen: undefined;
   DetailsScreen: Shoe;
+  CartScreen: undefined;
 };
 
 const Stack = createNativeStackNavigator<RootStackParamsList>();
@@ -42,6 +43,11 @@ export default function Navigation() {
           options={{ headerShown: false }}
         />
         <Stack.Screen
+          name="CartScreen"
+          component={CartScreen}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
           name="TabNavigation"
           component={TabNavigation}
           options={{ headerShown: false }}
@@ -51,13 +57,19 @@ export default function Navigation() {
   );
 }
 
-const TabBackground = ({ children }: { children: JSX.Element }) => {
+const TabBackground = () => {
   return (
     <ImageBackground
       source={require("../../assets/tab-image.png")}
-      style={{ flex: 1 }}
+      //style={{ flex: 1 }}
+      style={{
+        width: "100%",
+        height: 120,
+        position: "absolute",
+        top: -120,
+      }}
     >
-      {children}
+      {/* {children} */}
     </ImageBackground>
   );
 };
@@ -72,19 +84,7 @@ const TabNavigation = () => {
         tabBarShowLabel: false,
         tabBarHideOnKeyboard: true,
         tabBarBackground() {
-          return (
-            <TabBackground>
-              <View style={styles.containerButtonFloating}>
-                <View style={styles.buttonFloating}>
-                  <MaterialCommunityIcons
-                    name="shopping-outline"
-                    size={24}
-                    color="#fff"
-                  />
-                </View>
-              </View>
-            </TabBackground>
-          );
+          return <TabBackground />;
         },
       }}
     >
@@ -153,31 +153,21 @@ const TabNavigation = () => {
 };
 
 const styles = StyleSheet.create({
-  containerButtonFloating: {
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  buttonFloating: {
-    backgroundColor: Color.primary,
-    width: 60,
-    height: 60,
-    borderRadius: 30,
-    justifyContent: "center",
-    alignItems: "center",
-    elevation: 10,
-  },
   tabBarItem: {
     height: 30,
     right: 0,
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
-    top: 60,
+    top: -60,
   },
   tabBar: {
-    height: 120,
+    //height: 120,
     position: "absolute",
     borderTopWidth: 0,
     elevation: 0,
+    backgroundColor: "green",
+    zIndex: 0,
+    height: 0,
   },
 });
