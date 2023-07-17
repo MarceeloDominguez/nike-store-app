@@ -8,6 +8,8 @@ type Prop = {
 };
 
 export default function CardShoeInCart({ shoe }: Prop) {
+  const shoeTotalPrice = shoe.quantity * Number(shoe.price);
+
   return (
     <View style={styles.cardItem}>
       <View style={styles.contentImage}>
@@ -17,7 +19,9 @@ export default function CardShoeInCart({ shoe }: Prop) {
         <Text style={styles.nameShoe} numberOfLines={2}>
           {shoe.title}
         </Text>
-        <Text style={styles.priceShoe}>${shoe.price}</Text>
+        <Text style={styles.priceShoe}>
+          $ {shoeTotalPrice.toFixed(2)} X ({shoe.quantity})
+        </Text>
       </View>
     </View>
   );

@@ -1,7 +1,7 @@
 export const shoes = [
   {
     title: "Nike Jordan",
-    price: "302.00",
+    price: "300.00",
     image: require("../../assets/shoes/shoes-1.png"),
     images: [
       { img: require("../../assets/shoes/shoes-1.png") },
@@ -15,7 +15,7 @@ export const shoes = [
   },
   {
     title: "Nike Air Max",
-    price: "752.00",
+    price: "700.00",
     image: require("../../assets/shoes/shoes-2.png"),
     images: [
       { img: require("../../assets/shoes/shoes-2.png") },
@@ -29,7 +29,7 @@ export const shoes = [
   },
   {
     title: "Nike Club Max",
-    price: "47.7",
+    price: "400.00",
     image: require("../../assets/shoes/shoes-3.png"),
     images: [
       { img: require("../../assets/shoes/shoes-3.png") },
@@ -43,7 +43,7 @@ export const shoes = [
   },
   {
     title: "Nike Air Max",
-    price: "57.6",
+    price: "500.00",
     image: require("../../assets/shoes/shoes-4.png"),
     images: [
       { img: require("../../assets/shoes/shoes-4.png") },
@@ -57,7 +57,7 @@ export const shoes = [
   },
   {
     title: "Nike Club Max",
-    price: "47.7",
+    price: "250.00",
     image: require("../../assets/shoes/shoes-2.png"),
     images: [
       { img: require("../../assets/shoes/shoes-2.png") },
@@ -71,7 +71,7 @@ export const shoes = [
   },
   {
     title: "Nike Air Max 200",
-    price: "179.39",
+    price: "150.00",
     image: require("../../assets/shoes/shoes-6.png"),
     images: [
       { img: require("../../assets/shoes/shoes-6.png") },

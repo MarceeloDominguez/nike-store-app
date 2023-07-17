@@ -2,16 +2,23 @@ import React from "react";
 import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
 import { Color } from "../../constants/theme";
 
-export default function Checkout() {
+type Prop = {
+  priceTotalShoe: number;
+};
+
+export default function Checkout({ priceTotalShoe }: Prop) {
+  const delivery = 50;
+  const total = priceTotalShoe + delivery;
+
   return (
     <View style={styles.containerCheckout}>
       <View style={styles.contentCheckout}>
         <Text style={styles.title}>Subtotal</Text>
-        <Text style={styles.price}>$753.93</Text>
+        <Text style={styles.price}>$ {priceTotalShoe}</Text>
       </View>
       <View style={styles.contentCheckout}>
         <Text style={styles.title}>Delivery</Text>
-        <Text style={styles.price}>$60.20</Text>
+        <Text style={styles.price}>$ {delivery}</Text>
       </View>
       <View style={{ marginBottom: 20 }}>
         <Image
@@ -22,7 +29,7 @@ export default function Checkout() {
       <View>
         <View style={styles.contentTotalCost}>
           <Text style={styles.titlePriceTotal}>Total Cost</Text>
-          <Text style={styles.priceTotal}>$814.15</Text>
+          <Text style={styles.priceTotal}>$ {total}</Text>
         </View>
         <TouchableOpacity style={styles.containerButton} activeOpacity={0.8}>
           <Text style={styles.titleButton}>Checkout</Text>

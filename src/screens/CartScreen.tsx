@@ -22,6 +22,10 @@ type Prop = {
 export default function CartScreen({ navigation }: Prop) {
   const { shoeInCart } = useShoeStore();
 
+  const priceTotalShoe = shoeInCart.reduce((acc, item) => {
+    return acc + item.quantity * Number(item.price);
+  }, 0);
+
   useEffect(() => {
     navigation.setOptions({
       headerTitle: "My Cart",
@@ -79,7 +83,7 @@ export default function CartScreen({ navigation }: Prop) {
         leftOpenValue={70}
         stopLeftSwipe={70}
       />
-      <Checkout />
+      <Checkout priceTotalShoe={priceTotalShoe} />
     </View>
   );
 }

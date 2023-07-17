@@ -14,7 +14,9 @@ interface Prop
 
 export default function DetailsScreen({ route }: Prop) {
   const shoe = route.params;
-  const { addShoeToCart } = useShoeStore();
+  const { addShoeToCart, shoeInCart } = useShoeStore();
+
+  const productInCart = shoeInCart.find((item) => item.id === shoe.id);
 
   return (
     <>
@@ -42,8 +44,9 @@ export default function DetailsScreen({ route }: Prop) {
           </View>
         </View>
         <Pressable
-          style={styles.containerButton}
+          style={[styles.containerButton, { opacity: productInCart ? 0.9 : 1 }]}
           onPress={() => addShoeToCart(shoe)}
+          disabled={productInCart ? true : false}
         >
           <View style={styles.wrapTextButton}>
             <MaterialCommunityIcons
@@ -51,7 +54,9 @@ export default function DetailsScreen({ route }: Prop) {
               size={20}
               color="#fff"
             />
-            <Text style={styles.textButton}>Add to cart</Text>
+            <Text style={styles.textButton}>
+              {productInCart ? "Product in cart" : "Add to cart"}
+            </Text>
           </View>
         </Pressable>
       </View>
